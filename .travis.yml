@@ -1,0 +1,14 @@
+language: bash
+
+dist: jammy
+
+sudo: required
+
+install:
+  - sudo apt update && sudo apt install shellcheck
+
+scripts:
+  - make check-scripts
+
+notifications:
+  email: true
