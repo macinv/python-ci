@@ -30,7 +30,7 @@ conda-lock install --name "${PACKAGE_NAME}" conda-lock.yml
 
 conda activate "${PACKAGE_NAME}"
 pip install -r requirements.txt
-python setup.py bdist_wheel
+python -m build
 pip install "dist/$(find ./dist/*.whl -printf %f)"
 
 if [ "${TRAVIS}" = true ] && [ ! -f "${CACHED_ENV_DIR}/${locked_env_yml}" ]; then
