@@ -1,4 +1,4 @@
-language: bash
+language: python
 
 dist: jammy
 
@@ -6,6 +6,7 @@ sudo: required
 
 install:
   - sudo apt update && sudo apt install shellcheck
+  - bash scripts/set_up_python.sh
 
 scripts:
   - make check-scripts
