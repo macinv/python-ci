@@ -4,6 +4,9 @@ dist: jammy
 
 sudo: required
 
+python:
+  - "3.10"
+
 env:
   global:
     - CONDA_VERSION=23.3.1
