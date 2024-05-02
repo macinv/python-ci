@@ -1,11 +1,19 @@
-language: bash
+language: python
 
 dist: jammy
 
 sudo: required
 
+python:
+  - "3.10"
+
+env:
+  global:
+    - CONDA_VERSION=23.3.1
+
 install:
   - sudo apt update && sudo apt install shellcheck
+  - bash scripts/set_up_python.sh
 
 scripts:
   - make check-scripts
