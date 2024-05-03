@@ -8,8 +8,8 @@ wget "https://repo.anaconda.com/miniconda/Miniconda3-py39_${CONDA_VERSION}-0-Lin
 bash "miniconda_${CONDA_VERSION}.sh" -b -p "${HOME}/opt/conda"
 export PATH="${HOME}/opt/conda/bin:${PATH}"
 conda init bash
-# shellcheck disable=SC1090,SC2086
-source ~/.bashrc
+# shellcheck disable=SC1091
+source "${HOME}/.bashrc"
 conda config --set always_yes yes --set changeps1 no --set report_errors false
 
 # ensure we're using libmamba
