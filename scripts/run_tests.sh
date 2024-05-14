@@ -12,9 +12,14 @@ python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__version__)"
 black --check .
 pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
 
-python -m pytest \
-    --ignore tests/ignore --ignore tests/integration \
-    -n auto \
-    -v -rw --cov="${PACKAGE_NAME}" --cov-report term-missing --cov-report xml -m "not integration"
+# we might need to override the pytest line
+if [ -f run_tests_override.sh ]; then
+    ./run_tests_override.sh
+else
+    python -m pytest \
+        --ignore tests/ignore --ignore tests/integration \
+        -n auto \
+        -v -rw --cov="${PACKAGE_NAME}" --cov-report term-missing --cov-report xml -m "not integration"
+fi
 
 conda deactivate
