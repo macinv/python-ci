@@ -12,7 +12,7 @@ env:
     - CONDA_VERSION=24.5.0
 
 install:
-  - sudo apt update && sudo apt install shellcheck
+  - sudo apt-get update && sudo apt-get install shellcheck
   - bash scripts/set_up_python.sh
 
 scripts:
