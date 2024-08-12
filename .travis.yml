@@ -9,7 +9,7 @@ python:
 
 env:
   global:
-    - CONDA_VERSION=23.3.1
+    - CONDA_VERSION=24.5.0
 
 install:
   - sudo apt update && sudo apt install shellcheck
