@@ -12,9 +12,7 @@ conda init bash
 source "${HOME}/.bashrc"
 conda config --set always_yes yes --set changeps1 no --set report_errors false
 
-# ensure we're using libmamba
-conda install -n base conda-libmamba-solver
-conda config --set solver libmamba
+# note that libmamba-solver is now the default, so we don't need to install it
 
 # Useful for debugging any issues with conda
 conda info -a
