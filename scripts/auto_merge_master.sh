@@ -7,8 +7,8 @@ export GIT_COMMITTER_EMAIL="travis@travis-ci.com"
 export GIT_COMMITTER_NAME="Travis CI"
 
 export tmp_dir="${HOME}/tmp"
-export SOURCE_BRANCH=master_test
-export TARGET_BRANCH=build_debug
+export SOURCE_BRANCH=master
+export TARGET_BRANCH=dev
 # note: Travis suppresses the github token from the output (it shows as [secure])
 export REPO_URL="https://${GITHUB_TOKEN}:x-oauth-basic@github.com/${TRAVIS_REPO_SLUG}.git"
 
