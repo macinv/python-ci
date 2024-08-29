@@ -7,7 +7,9 @@ set -e
 eval "$(conda shell.bash hook)"
 
 conda activate "${PACKAGE_NAME}"
-python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__version__)"
+
+if [ "$ENSURE_PYTEST_USES_INSTALLED_VERSION" = "1" ]; then mv "${PACKAGE_NAME}" "_${PACKAGE_NAME}"; fi
+python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__file__, ${PACKAGE_NAME}.__version__)"
 
 black --check .
 pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
@@ -21,5 +23,7 @@ else
         -n auto \
         -v -rw --cov="${PACKAGE_NAME}" --cov-report term-missing --cov-report xml -m "not integration"
 fi
+
+if [ "$ENSURE_PYTEST_USES_INSTALLED_VERSION" = "1" ]; then mv "_${PACKAGE_NAME}" "${PACKAGE_NAME}"; fi
 
 conda deactivate
