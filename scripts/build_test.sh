@@ -26,7 +26,7 @@ else
 fi
 
 # Note: this only works if the yaml file is named "conda-lock.yml"
-micromamba create --name "${PACKAGE_NAME} -f conda-lock.yml
+micromamba create --name "${PACKAGE_NAME}" -f conda-lock.yml
 
 micromamba activate "${PACKAGE_NAME}"
 python -m pip install -r requirements.txt
@@ -41,5 +41,5 @@ fi
 # cd to root directory to make sure the pip installed copy is used
 cd /
 python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__version__); print(${PACKAGE_NAME})"
-cd "${CUR_DIR}"
+cd "${CUR_DIR}
 micromamba deactivate
