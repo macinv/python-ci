@@ -20,8 +20,8 @@ export PATH="${BIN_FOLDER}:${PATH}"
 
 # shellcheck disable=SC1091
 micromamba shell init
-echo "shell init completed, running bashrc"
-source "${HOME}/.bashrc"
+
+eval "$(micromamba shell hook --shell bash)"
 micromamba activate
 micromamba config set always_yes true
 
