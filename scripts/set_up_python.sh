@@ -19,8 +19,8 @@ echo "micromamba install script completed!"
 export PATH="${BIN_FOLDER}:${PATH}"
 
 # shellcheck disable=SC1091
-micromamba init bash
-echo "shell init completed, running bash script"
+micromamba shell init
+echo "shell init completed, running bashrc"
 source "${HOME}/.bashrc"
 micromamba activate
 micromamba config set always_yes true
