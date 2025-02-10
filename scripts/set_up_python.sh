@@ -14,11 +14,13 @@ curl -L micro.mamba.pm/install.sh -o install_micromamba.sh
 # < /dev/null ensures we run in noninteractive mode
 bash ./install_micromamba.sh < /dev/null
 
+echo "micromamba install script completed!"
 
 export PATH="${BIN_FOLDER}:${PATH}"
 
 # shellcheck disable=SC1091
 micromamba init bash
+echo "shell init completed, running bash script"
 source "${HOME}/.bashrc"
 micromamba activate
 micromamba config set always_yes true
