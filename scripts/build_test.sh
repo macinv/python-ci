@@ -41,5 +41,5 @@ fi
 # cd to root directory to make sure the pip installed copy is used
 cd /
 python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__version__); print(${PACKAGE_NAME})"
-cd "${CUR_DIR}
+cd "${CUR_DIR}"
 micromamba deactivate
