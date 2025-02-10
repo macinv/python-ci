@@ -6,7 +6,7 @@ set -e
 export MAMBA_ROOT_PREFIX="${HOME}/opt/micromamba"
 export PREFIX_LOCATION="${MAMBA_ROOT_PREFIX}"
 export BIN_FOLDER="${MAMBA_ROOT_PREFIX}/bin"
-export INIT_YES="Y"
+export INIT_YES="N"
 export CONDA_FORGE_YES="Y"
 
 curl -L micro.mamba.pm/install.sh -o install_micromamba.sh
@@ -18,6 +18,7 @@ bash ./install_micromamba.sh < /dev/null
 export PATH="${BIN_FOLDER}:${PATH}"
 
 # shellcheck disable=SC1091
+micromamba init bash
 source "${HOME}/.bashrc"
 micromamba activate
 micromamba config set always_yes true
