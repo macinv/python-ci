@@ -12,7 +12,9 @@ if [ "$ENSURE_PYTEST_USES_INSTALLED_VERSION" = "1" ]; then mv "${PACKAGE_NAME}" 
 python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__file__, ${PACKAGE_NAME}.__version__)"
 
 black --check .
-pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
+# pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
+ruff check "${PACKAGE_NAME}" | tee ruff.out
+
 
 # we might need to override the pytest line
 if [ -f run_tests_override.sh ]; then
