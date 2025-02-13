@@ -4,9 +4,9 @@
 set -e
 
 # keep this to allow this script to be run through command bash
-eval "$(conda shell.bash hook)"
+eval "$(micromamba shell hook -s posix)"
 
-conda activate "${PACKAGE_NAME}"
+micromamba activate "${PACKAGE_NAME}"
 
 if [ "$ENSURE_PYTEST_USES_INSTALLED_VERSION" = "1" ]; then mv "${PACKAGE_NAME}" "_${PACKAGE_NAME}"; fi
 python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__file__, ${PACKAGE_NAME}.__version__)"
@@ -26,4 +26,4 @@ fi
 
 if [ "$ENSURE_PYTEST_USES_INSTALLED_VERSION" = "1" ]; then mv "_${PACKAGE_NAME}" "${PACKAGE_NAME}"; fi
 
-conda deactivate
+micromamba deactivate

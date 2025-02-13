@@ -3,21 +3,37 @@
 
 set -e
 
-wget "https://repo.anaconda.com/miniconda/Miniconda3-py39_${CONDA_VERSION}-0-Linux-x86_64.sh" \
-    -O "miniconda_${CONDA_VERSION}.sh"
-bash "miniconda_${CONDA_VERSION}.sh" -b -p "${HOME}/opt/conda"
-export PATH="${HOME}/opt/conda/bin:${PATH}"
-conda init bash
+export MAMBA_ROOT_PREFIX="${HOME}/opt/micromamba"
+export PREFIX_LOCATION="${MAMBA_ROOT_PREFIX}"
+export BIN_FOLDER="${MAMBA_ROOT_PREFIX}/bin"
+export INIT_YES="N"
+export CONDA_FORGE_YES="Y"
+
+curl -L micro.mamba.pm/install.sh -o install_micromamba.sh
+
+# < /dev/null ensures we run in noninteractive mode
+bash ./install_micromamba.sh < /dev/null
+
+echo "micromamba install script completed!"
+
+export PATH="${BIN_FOLDER}:${PATH}"
+
 # shellcheck disable=SC1091
-source "${HOME}/.bashrc"
-conda config --set always_yes yes --set changeps1 no --set report_errors false
+micromamba shell init
 
-# note that libmamba-solver is now the default, so we don't need to install it
+eval "$(micromamba shell hook --shell bash)"
+micromamba activate
+micromamba config set always_yes true
 
-# Useful for debugging any issues with conda
-conda info -a
 
-pip install conda-lock==1.4.0
+# useful for debugging
+micromamba info 
+micromamba config list
+
+# we can use conda-lock (it's MIT-licensed)
+micromamba install python=3.12
+python -m pip install conda-lock==1.4.0
+micromamba list
 
 # set up pypi credentials
 mkdir "${HOME}/.pip"

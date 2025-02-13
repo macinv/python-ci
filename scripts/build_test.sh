@@ -7,7 +7,7 @@ CUR_DIR=${PWD}
 CACHED_ENV_DIR="${HOME}/.cache/envs"
 
 # Note: keep this line to allow this script to be run through bash
-eval "$(conda shell.bash hook)"
+eval "$(micromamba shell hook -s posix)"
 
 # lock only conda dependencies and leave out the pip dependencies
 sed '/pip:/Q' env.yml > env-conda.yml
@@ -26,12 +26,12 @@ else
 fi
 
 # Note: this only works if the yaml file is named "conda-lock.yml"
-conda-lock install --name "${PACKAGE_NAME}" conda-lock.yml
+micromamba create --name "${PACKAGE_NAME}" -f conda-lock.yml
 
-conda activate "${PACKAGE_NAME}"
-pip install -r requirements.txt
+micromamba activate "${PACKAGE_NAME}"
+python -m pip install -r requirements.txt
 python -m build
-pip install "dist/$(find ./dist/*.whl -printf %f)"
+python -m pip install "dist/$(find ./dist/*.whl -printf %f)"
 
 if [ "${TRAVIS}" = true ] && [ ! -f "${CACHED_ENV_DIR}/${locked_env_yml}" ]; then
     # copy to cache
@@ -42,4 +42,4 @@ fi
 cd /
 python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__version__); print(${PACKAGE_NAME})"
 cd "${CUR_DIR}"
-conda deactivate
+micromamba deactivate
