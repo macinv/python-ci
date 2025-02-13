@@ -13,7 +13,7 @@ python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__file__, ${PACKAGE_NAM
 
 black --check .
 # pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
-ruff check "${PACKAGE_NAME}" | tee ruff.out
+ruff check --output-format concise "${PACKAGE_NAME}" | tee ruff.out
 
 
 # we might need to override the pytest line
