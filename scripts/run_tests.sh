@@ -18,7 +18,7 @@ echo "completed linting checks!"
 
 # we might need to override the pytest line
 if [ -f run_tests_override.sh ]; then
-    ./run_tests_override.sh
+    source ./run_tests_override.sh
 else
     echo "starting pytest run!"
     python -m pytest \
