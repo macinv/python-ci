@@ -18,7 +18,7 @@ echo "completed linting checks!"
 
 # we might need to override the pytest line
 if [ -f run_tests_override.sh ]; then
-    # shellcheck gets worried that the file doesn't exist, but
+    # avoid shell-check getting worried that the file doesn't exist, but
     # since we're testing for its existence first, we're fine
     # shellcheck disable=SC1091
     source ./run_tests_override.sh
