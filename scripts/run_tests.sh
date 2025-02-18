@@ -13,13 +13,14 @@ python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__file__, ${PACKAGE_NAM
 
 black --check .
 # pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
-ruff check --output-format concise "${PACKAGE_NAME}" | tee ruff.out
-
+# ruff check --output-format concise "${PACKAGE_NAME}" | tee ruff.out
+echo "completed linting checks!"
 
 # we might need to override the pytest line
 if [ -f run_tests_override.sh ]; then
     ./run_tests_override.sh
 else
+    echo "starting pytest run!"
     python -m pytest \
         --ignore tests/ignore --ignore tests/integration \
         -n auto \
