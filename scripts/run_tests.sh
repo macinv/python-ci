@@ -12,8 +12,8 @@ if [ "$ENSURE_PYTEST_USES_INSTALLED_VERSION" = "1" ]; then mv "${PACKAGE_NAME}" 
 python -c "import ${PACKAGE_NAME}; print(${PACKAGE_NAME}.__file__, ${PACKAGE_NAME}.__version__)"
 
 black --check .
-# pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
-# ruff check --output-format concise "${PACKAGE_NAME}" | tee ruff.out
+pylint -f parseable "${PACKAGE_NAME}" | tee pylint.out
+ruff check --output-format concise "${PACKAGE_NAME}" | tee ruff.out
 echo "completed linting checks!"
 
 # we might need to override the pytest line
