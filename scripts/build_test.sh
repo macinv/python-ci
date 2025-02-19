@@ -21,7 +21,7 @@ if [ -f "${locked_env_yml}" ]; then
     echo "${locked_env_yml} already exists."
     cp "${locked_env_yml}" "conda-lock.yml"
 else
-    conda-lock -f env-conda.yml -p linux-64 --lockfile "conda-lock.yml"
+    conda-lock -f env-conda.yml -p linux-64 --lockfile "conda-lock.yml" --micromamba
     cp "conda-lock.yml" "${locked_env_yml}"
 fi
 

@@ -32,7 +32,7 @@ micromamba config list
 
 # we can use conda-lock (it's MIT-licensed)
 micromamba install python=3.12
-python -m pip install conda-lock==1.4.0
+python -m pip install conda-lock==2.5.7
 micromamba list
 
 # set up pypi credentials
