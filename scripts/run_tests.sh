@@ -30,6 +30,8 @@ else
         -v -rw --cov="${PACKAGE_NAME}" --cov-report term-missing --cov-report xml -m "not integration"
 fi
 
+
+
 if [ "$ENSURE_PYTEST_USES_INSTALLED_VERSION" = "1" ]; then mv "_${PACKAGE_NAME}" "${PACKAGE_NAME}"; fi
 
 micromamba deactivate
